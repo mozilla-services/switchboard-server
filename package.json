@@ -1,0 +1,15 @@
+{
+  "name": "switchboard",
+  "version": "0.0.1",
+  "description": "Switchboard Server",
+  "main": "switchboard.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miles Crabill",
+  "license": "MPL-2.0"
+}
