@@ -4,8 +4,12 @@
   "description": "Switchboard Server",
   "main": "switchboard.js",
   "dependencies": {
+    "babel": "^5.8.23",
+    "convict": "^1.0.1",
+    "crc-32": "^0.3.0",
     "express": "^4.13.3"
   },
+  "repository": "github.com/mozilla-services/switchboard",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
