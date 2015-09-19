@@ -1,3 +1,5 @@
-function Experiment(manager) = {
-    this.manager = manager
+class Experiment {
+    constructor(manager) {
+        this.manager = manager
+    }
 }
