@@ -1,6 +1,6 @@
-var convict = require('convict')
+let convict = require('convict');
 
-var config = convict({
+let config = convict({
   env: {
     doc: 'The applicaton environment.',
     format: ['production', 'development', 'test'],
@@ -18,14 +18,20 @@ var config = convict({
     format: 'port',
     default: 0,
     env: 'PORT'
+  },
+  update_server_url: {
+    doc: 'The URL to update the server.',
+    format: String,
+    default: 'update',
+    env: 'UPDATE_URL'
   }
-})
+});
 
 // Load environment dependent configuration
-var env = config.get('env')
+let env = config.get('env');
 // config.loadFile('./config/' + env + '.json')
 
 // Perform validation
-config.validate({strict: true})
+config.validate({strict: true});
 
-module.exports = config
+module.exports = config;
