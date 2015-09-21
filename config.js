@@ -24,6 +24,12 @@ let config = convict({
     format: String,
     default: 'update',
     env: 'UPDATE_URL'
+  },
+  num_buckets: {
+    doc: 'The number of S3 buckets.',
+    format: Number,
+    default: 100,
+    env: 'NUM_BUCKETS'
   }
 });
 

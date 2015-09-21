@@ -1,7 +1,7 @@
 import * as crc32 from 'crc-32';
 
-class SwitchboardManager {
-    constructor(params) {
+class Manager {
+    constructor(params, numBuckets = 100) {
         this.lang = params.lang;
         this.manufacturer = params.manufacturer;
         this.device = params.device;
@@ -9,6 +9,7 @@ class SwitchboardManager {
         this.country = params.country;
         this.version = params.version;
         this.appId = params.appId;
+        this.numBuckets = numBuckets
     };
 
     isInBucket(low, high) {
@@ -26,20 +27,17 @@ class SwitchboardManager {
     };
 
     isApplicationId(applicationId) {
-        // playing around appId being undefined
-        return applicationId == this.appId && this.appid != undefined;
+        // check for undefined appId
+        return typeof this.appId != undefined &&
+        applicationId === this.appId;
     };
 
     getUserBucket() {
         // gets checksum from uuid, sorts into a bucket
-        // TODO: move to config
-        const numBuckets = 100;
-        let bucket = crc32(this.uuid) % numBuckets;
-        return bucket;
-    };
+        // crc32 hash, toString() is a little janky
 
-    print() {
-        return JSON.stringify(this);
+        // should this be abs'd? that would make sense.
+        return crc32.str(this.uuid.toString()) % this.numBuckets;
     };
 
     inactiveExperiment() {
@@ -52,4 +50,4 @@ class SwitchboardManager {
     };
 }
 
-module.exports = SwitchboardManager
+module.exports = Manager
