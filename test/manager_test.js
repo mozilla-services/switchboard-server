@@ -1,10 +1,9 @@
 import * as should from 'should';
-import * as assert from 'assert';
 
 const numBuckets = 100
 
 // manager tests
-import Manager from '../manager.js'
+import Manager from '../lib/manager.js'
 describe('Manager', function() {
     describe('#getUserBucket()', function() {
         let manager = new Manager({'lang': 'eng'}, numBuckets);
