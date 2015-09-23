@@ -1,8 +1,8 @@
 {
-  "name": "switchboard",
+  "name": "switchboard-server",
   "version": "0.0.1",
   "description": "Switchboard Server",
-  "main": "switchboard.js",
+  "main": "index.js",
   "dependencies": {
     "babel": "^5.8.23",
     "babel-runtime": "^5.8.24",
@@ -14,7 +14,7 @@
     "should": "^7.1.0",
     "supertest": "^1.1.0"
   },
-  "repository": "github.com/mozilla-services/switchboard",
+  "repository": "github.com/mozilla-services/switchboard-server",
   "devDependencies": {},
   "scripts": {
     "lint": "eslint src",
