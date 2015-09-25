@@ -9,7 +9,7 @@ import Experiment from './lib/experiment.js';
 const app = express();
 
 // main route
-app.get('/', function(req, res) {
+app.get(config.get('main_server_url'), function(req, res) {
     // manager constructor takes query args and a # of buckets
     let manager = new Manager(req.query, config.get('num_buckets'));
     let results = {
@@ -25,8 +25,8 @@ app.get('/', function(req, res) {
 })
 
 // update route
-app.get('/' + config.get('update_server_url'), function(req, res) {
-    res.set('Content-Type', 'application/json')..json('update');
+app.get(config.get('update_server_url'), function(req, res) {
+    res.set('Content-Type', 'application/json').json('update');
 })
 
 app.listen(8080);
