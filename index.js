@@ -6,7 +6,7 @@ import config from './lib/config.js';
 import Manager from './lib/manager.js';
 import Experiment from './lib/experiment.js';
 
-var app = express();
+const app = express();
 
 // main route
 app.get('/', function(req, res) {
@@ -21,12 +21,14 @@ app.get('/', function(req, res) {
     // let experiment = new Experiment(manager);
     // let results = experiments.sample();
 
-    res.send(JSON.stringify(results));
+    res.set('Content-Type', 'application/json').json(results);
 })
 
 // update route
 app.get('/' + config.get('update_server_url'), function(req, res) {
-    res.send('update');
+    res.set('Content-Type', 'application/json')..json('update');
 })
 
 app.listen(8080);
+
+module.exports = app;
