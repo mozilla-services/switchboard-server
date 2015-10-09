@@ -2,14 +2,6 @@
 import express from 'express';
 import fs from 'fs';
 import * as Q from 'q';
-import * as domain from 'domain';
-
-const d = domain.create();
-
-// handle exceptions
-d.on('error', function(err) {
-    console.error(err);
-});
 
 // local imports
 import config from './lib/config.js';
@@ -35,14 +27,17 @@ function getExperiment(req) {
 
 function updateExperiments() {
     let deferred = Q.defer();
+    const experiments_file = config.get('experiments_file');
+    if ('' === experiments_file || typeof experiments_file === 'undefined') {
+        deferred.reject(new Error('hi'));
+        return deferred.promise;
+    };
     // prevent exceptions, run in domain
-    d.run(function() {
-        fs.readFile(config.get('experiments_file'), 'utf8', function(err, data) {
-            if (err) {
-                deferred.reject(new Error(err));
-            }
-            deferred.resolve(data);
-        })
+    fs.readFile(experiments_file, 'utf8', function(err, data) {
+        if (err) {
+            deferred.reject(new Error(err));
+        }
+        deferred.resolve(data);
     });
     return deferred.promise;
 }
@@ -50,20 +45,30 @@ function updateExperiments() {
 // v1 route
 app.get(v1_url, function(req, res) {
     // uses promises
-    updateExperiments().then(function(data) {
-        res.set('Content-Type', 'application/json').json(getExperiment(req).load(data));
-    });
+    updateExperiments().then(
+        function(data) {
+            res.set('Content-Type', 'application/json').json(getExperiment(req).load(data));
+        },
+        function(err) {
+            res.send(err)
+        }
+    );
 });
 
 // v2 route - returns the mainServerUrl as well
 app.get(v2_url, function(req, res) {
     // uses promises
-    updateExperiments().then(function(data) {
-        res.set('Content-Type', 'application/json').json({
-            'mainServerUrl': ip + ':' + port + v2_url,
-            'results': getExperiment(req).load(data),
-        });
-    });
+    updateExperiments().then(
+        function(data) {
+            res.set('Content-Type', 'application/json').json({
+                'mainServerUrl': ip + ':' + port + v2_url,
+                'results': getExperiment(req).load(data),
+            }
+        )},
+        function(err) {
+            res.send(err)
+        }
+    );
 });
 
 // urls route
