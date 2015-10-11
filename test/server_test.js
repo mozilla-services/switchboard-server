@@ -2,7 +2,7 @@ import request from 'supertest';
 import * as should from 'should';
 
 // switchboard-server app, config
-import app from '../index.js';
+import app from '../lib/app.js';
 import config from '../lib/config.js';
 
 // fetch all this from config
