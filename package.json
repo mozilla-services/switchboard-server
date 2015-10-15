@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "eslint src",
     "babel-node": "babel-node --stage 0 --ignore='foo|bar|baz'",
-    "test": "mocha --compilers js:mocha-babel test/*.js"
+    "test": "EXPERIMENTS_FILE=config/experiments.json mocha --compilers js:mocha-babel test/*.js"
   },
   "author": "Miles Crabill",
   "license": "MPL-2.0"

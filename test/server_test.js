@@ -5,9 +5,7 @@ import should from 'should';
 import app from '../lib/app.js';
 import config from '../lib/config.js';
 
-// example experiments to test
-// gets dirname (test), goes up a dir to config
-config.set('experiments_file', __dirname + '/../config/experiments.json')
+// note: npm test uses experiments_file = ../config/experiments.json
 
 // fetch all this from config
 const ip = config.get('ip');
