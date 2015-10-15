@@ -1,5 +1,5 @@
 import request from 'supertest';
-import * as should from 'should';
+import should from 'should';
 
 // switchboard-server app, config
 import app from '../lib/app.js';
