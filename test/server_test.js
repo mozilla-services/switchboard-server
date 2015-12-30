@@ -9,17 +9,17 @@ import should from 'should';
 import app from '../lib/app.js';
 import config from '../lib/config.js';
 
-// note: npm test uses experiments_file = ../config/experiments.json
+// note: npm test uses experimentsFile = ../config/experiments.json
 
 // fetch all this from config
 const ip = config.get('ip');
 const port = config.get('port');
-const main_server_url = config.get('main_server_url');
-const base_url = config.get('base_url');
-const urls_url = base_url + config.get('urls_url');
+const mainServerUrl = config.get('mainServerUrl');
+const baseUrl = config.get('baseUrlbaseUrl');
+const urlsUrl = baseUrl + config.get('urlsUrl');
 
-const v2_url = base_url + 'v2';
-const v1_url = base_url + 'v1';
+const v2_url = baseUrl + 'v2';
+const v1_url = baseUrl + 'v1';
 
 describe('GET /v1 with lang = eng and uuid = foo', function() {
     it('should respond with JSON', function(done) {

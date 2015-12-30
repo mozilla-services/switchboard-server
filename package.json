@@ -14,6 +14,7 @@
     "mocha": "^2.3.2",
     "mocha-babel": "^3.0.0",
     "morgan": "^1.6.1",
+    "mozlog": "^2.0.2",
     "q": "^1.4.1",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
