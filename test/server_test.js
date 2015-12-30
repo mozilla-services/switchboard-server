@@ -18,20 +18,20 @@ const mainServerUrl = config.get('mainServerUrl');
 const baseUrl = config.get('baseUrlbaseUrl');
 const urlsUrl = baseUrl + config.get('urlsUrl');
 
-const v2_url = baseUrl + 'v2';
-const v1_url = baseUrl + 'v1';
+const v2Url = baseUrl + 'v2';
+const v1Url = baseUrl + 'v1';
 
 describe('GET /v1 with lang = eng and uuid = foo', function() {
   it('should respond with JSON', function(done) {
     request(app)
-      .get(v1_url + '/?lang=eng')
+      .get(v1Url + '/?lang=eng')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   })
   it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
-      .get(v1_url + '/?lang=eng&uuid=foo')
+      .get(v1Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
         if (res.body['onboarding-a'].isActive != true &&
@@ -46,14 +46,14 @@ describe('GET /v1 with lang = eng and uuid = foo', function() {
 describe('GET /v2 with lang = eng and uuid = foo', function() {
   it('should respond with JSON', function(done) {
     request(app)
-      .get(v2_url + '/?uuid=foo')
+      .get(v2Url + '/?uuid=foo')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   })
   it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
-      .get(v2_url + '/?lang=eng&uuid=foo')
+      .get(v2Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
         if (res.body['results']['onboarding-a'].isActive != true &&
