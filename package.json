@@ -13,14 +13,15 @@
     "file-stream-rotator": "0.0.6",
     "mocha": "^2.3.2",
     "mocha-babel": "^3.0.0",
-    "morgan": "^1.6.1",
     "mozlog": "^2.0.2",
     "q": "^1.4.1",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
   },
   "repository": "github.com/mozilla-services/switchboard-server",
-  "devDependencies": {},
+  "devDependencies": {
+
+  },
   "scripts": {
     "lint": "eslint src",
     "babel-node": "babel-node --stage 0 --ignore='foo|bar|baz'",
