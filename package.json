@@ -11,16 +11,15 @@
     "crc": "^3.3.0",
     "express": "^4.13.3",
     "file-stream-rotator": "0.0.6",
+    "mozlog": "^2.0.2",
+    "q": "^1.4.1"
+  },
+  "repository": "https://github.com/mozilla-services/switchboard-server",
+  "devDependencies": {
     "mocha": "^2.3.2",
     "mocha-babel": "^3.0.0",
-    "mozlog": "^2.0.2",
-    "q": "^1.4.1",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
-  },
-  "repository": "github.com/mozilla-services/switchboard-server",
-  "devDependencies": {
-
   },
   "scripts": {
     "lint": "eslint src",
@@ -28,5 +27,13 @@
     "test": "EXPERIMENTS_FILE=config/experiments.json mocha --compilers js:mocha-babel test/*.js"
   },
   "author": "Miles Crabill",
+  "contributors": "Miles",
+  "keywords": [
+    "switchboard",
+    "a/b testing",
+    "firefox",
+    "mozilla",
+    "android"
+  ],
   "license": "MPL-2.0"
 }
