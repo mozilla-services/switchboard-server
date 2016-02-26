@@ -15,7 +15,7 @@ import config from '../lib/config.js';
 const ip = config.get('ip');
 const port = config.get('port');
 const mainServerUrl = config.get('mainServerUrl');
-const baseUrl = config.get('baseUrlbaseUrl');
+const baseUrl = config.get('baseUrl');
 const urlsUrl = baseUrl + config.get('urlsUrl');
 
 const v2Url = baseUrl + 'v2';
