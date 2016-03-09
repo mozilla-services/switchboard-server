@@ -1,6 +1,9 @@
 To install dependencies:
 npm install
 
+To install dev dependencies, such as for running tests:
+npm install --dev
+
 To run the server:
 CONFIG_FILE=/path/to/config.json node index.js
 
