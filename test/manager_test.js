@@ -2,12 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import should from 'should';
-
-const numBuckets = 100
+const numBuckets = 100;
 
 // manager tests
-import Manager from '../lib/manager.js'
+import Manager from '../lib/manager.js';
+
 describe('Manager', function() {
     describe('#getUserBucket()', function() {
         let manager = new Manager({'lang': 'eng'}, numBuckets);

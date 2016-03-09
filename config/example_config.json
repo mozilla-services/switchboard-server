@@ -5,5 +5,5 @@
     "mainServerUrl": "localhost",
     "urlsUrl": "/urls",
     "numBuckets": 100,
-    "experimentsFile": "test/test_experiments.json"
+    "experimentsFile": "experiments/basic_experiments.json"
 }

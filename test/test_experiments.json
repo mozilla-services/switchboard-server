@@ -1,0 +1,34 @@
+{
+  "onboarding-a": {
+    "match": {},
+    "buckets": {
+      "min": "0",
+      "max": "50"
+    }
+  },
+  "onboarding-b": {
+    "match": {},
+    "buckets": {
+      "min": "50",
+      "max": "100"
+    }
+  },
+  "fennec_aurora": {
+    "match": {
+      "appId": "^org.mozilla.fennec_aurora$"
+    },
+    "buckets": {
+      "min": "0",
+      "max": "100"
+    }
+  },
+  "fennec": {
+    "match": {
+      "appId": "^org.mozilla.fennec$"
+    },
+    "buckets": {
+      "min": "0",
+      "max": "100"
+    }
+  }
+}

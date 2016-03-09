@@ -1,0 +1,9 @@
+{
+  "ip": "127.0.0.1",
+  "port": "8080",
+  "baseUrl": "/",
+  "mainServerUrl": "https://switchboard-server.dev.mozaws.net",
+  "urlsUrl": "urls",
+  "numBuckets": 100,
+  "experimentsFile": "config/experiments.json"
+}
