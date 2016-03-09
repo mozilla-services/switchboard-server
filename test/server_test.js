@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import request from 'supertest';
+import should from 'should';
 
 // switchboard-server app, config
 import app from '../lib/app.js';

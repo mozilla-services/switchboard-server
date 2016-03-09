@@ -21,11 +21,7 @@
     "supertest": "^1.1.0"
   },
   "scripts": {
-    "lint": "eslint src",
-    "test": "EXPERIMENTS_FILE=test/test_config.json mocha --compilers js:babel-core/register test/*.js"
-  },
-  "babel": {
-    "presets": ["es2015"]
+    "test": "CONFIG_FILE=test/test_config.json mocha --compilers js:babel-core/register test/*.js"
   },
   "author": "Miles Crabill",
   "contributors": "Miles",
