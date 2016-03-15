@@ -7,10 +7,14 @@ npm install --dev
 To run the server:
 npm start
 
-or if using nodemon:
-CONFIG_FILE=/path/to/config.json nodemon index.js
+Note: the above uses CONFIG_FILE=config/example_config.json by default.
+This can be changed in your package.json, or you can simply run ```CONFIG_FILE=/path/to/config.json node index.js``` yourself.
+
+To run the tests:
+npm test
+
 
 The config file must have experimentsFile set, or the server will fail.
 For testing, setting the EXPERIMENTS_FILE env variable instead of CONFIG_FILE is sufficient.
 
-By default, listens on localhost:8080.
+By default, switchboard-server listens on localhost:8080.
