@@ -11,7 +11,8 @@
     "express": "^4.13.3",
     "file-stream-rotator": "0.0.6",
     "mozlog": "^2.0.2",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "should": "^8.2.2"
   },
   "repository": "https://github.com/mozilla-services/switchboard-server",
   "devDependencies": {
