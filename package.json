@@ -23,8 +23,7 @@
     "supertest": "^1.1.0"
   },
   "scripts": {
-    "test": "CONFIG_FILE=test/test_config.json mocha --compilers js:babel-core/register test/*.js",
-    "cover": "CONFIG_FILE=test/test_config.json ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register test/*.js",
+    "test": "CONFIG_FILE=test/test_config.json ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register test/*.js",
     "start": "CONFIG_FILE=config/example_config.json node index.js"
   },
   "author": "Miles Crabill",
