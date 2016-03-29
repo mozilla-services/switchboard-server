@@ -14,6 +14,10 @@ describe('Manager', function() {
             manager.uuid = 101;
             manager.getUserBucket().should.equal(76);
         });
+        it('should return the hashed uuid mod numBuckets', function() {
+            manager.uuid = 50;
+            manager.getUserBucket().should.equal(89);
+        });
         it('should work for negatives', function() {
             manager.uuid = -3;
             manager.getUserBucket().should.equal(14);
@@ -34,6 +38,11 @@ describe('Manager', function() {
             manager.uuid = 50;
             let bucket = manager.getUserBucket(this.uuid);
             manager.isInBucket(bucket, bucket).should.be.false();
+        });
+        it('should return false if low > high', function() {
+            manager.uuid = 50;
+            let bucket = manager.getUserBucket(this.uuid);
+            manager.isInBucket(bucket + 1, bucket).should.be.false();
         });
     });
 });

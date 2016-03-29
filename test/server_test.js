@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+'use strict';
+
 import request from 'supertest';
 import should from 'should';
 
@@ -28,7 +30,7 @@ describe('GET /v1 with lang = eng and uuid = foo', function() {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
-  })
+  });
   it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
       .get(v1Url + '/?lang=eng&uuid=foo')
@@ -36,12 +38,12 @@ describe('GET /v1 with lang = eng and uuid = foo', function() {
       .expect(function(res) {
         if (res.body['onboarding-a'].isActive !== true &&
           res.body['onboarding-b'].isActive !== true) {
-          throw new Error('one of onboarding-a or onboarding-b should be true')
+          throw new Error('one of onboarding-a or onboarding-b should be true');
         }
       })
       .expect(200, done);
-  })
-})
+  });
+});
 
 describe('GET /v2 with lang = eng and uuid = foo', function() {
   it('should respond with JSON', function(done) {
@@ -50,15 +52,17 @@ describe('GET /v2 with lang = eng and uuid = foo', function() {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
-  })
-  it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
+  });
+  it('if uuid is given, only one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
       .get(v2Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
-        if (res.body['results']['onboarding-a'].isActive !== true &&
-          res.body['results']['onboarding-b'].isActive !== true) {
-          throw new Error('one of onboarding-a or onboarding-b should be true')
+        if (res.body.results['onboarding-a'].isActive === true) {
+          res.body.results['onboarding-b'].isActive.should.not.be.True();
+        }
+        if (res.body.results['onboarding-b'].isActive === true) {
+          res.body.results['onboarding-a'].isActive.should.not.be.True();
         }
       })
       .expect(200, done);
@@ -78,13 +82,13 @@ describe('GETs to /v1', function() {
       .get(v2Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
-        if (res.body['results']['onboarding-a'].isActive !== true &&
-          res.body['results']['onboarding-b'].isActive !== true) {
-          throw new Error('one of onboarding-a or onboarding-b should be true')
+        if (res.body.results['onboarding-a'].isActive !== true &&
+          res.body.results['onboarding-b'].isActive !== true) {
+          throw new Error('one of onboarding-a or onboarding-b should be true');
         }
       })
       .expect(200, done);
-  })
+  });
   it('should pass on values object if the experiment is satisfied', function(done) {
     request(app)
       .get(v1Url + '/?uuid=foo')
@@ -108,12 +112,32 @@ describe('GETs to /v1', function() {
       .get(v1Url + '/?uuid=test&appId=org.mozilla.fennec_aurora')
       .set('Accept', 'application/json')
       .expect(function(res) {
-        if (res.body['fennec_aurora'].isActive !== true) {
-          throw new Error('fennec_aurora is not active and should be')
+        if (res.body.fennec_aurora.isActive !== true) {
+          throw new Error('fennec_aurora is not active and should be');
         }
-        if (res.body['fennec'].isActive === true) {
-          throw new Error('fennec is active and should not be')
+        if (res.body.fennec.isActive === true) {
+          throw new Error('fennec is active and should not be');
         }
+      })
+      .expect(200, done);
+  });
+})
+
+describe('GETs to /urls', function() {
+  it('should respond with JSON', function(done) {
+    request(app)
+      .get(urlsUrl + '/?uuid=foo')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+  it('should have a mainServerUrl and a updateServerUrl', function(done) {
+    request(app)
+      .get(urlsUrl)
+      .set('Accept', 'application/json')
+      .expect(function(res) {
+        res.body.mainServerUrl.should.be.a.String();
+        res.body.updateServerUrl.should.be.a.String();
       })
       .expect(200, done);
   })
