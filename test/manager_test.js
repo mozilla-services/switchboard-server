@@ -6,6 +6,7 @@ const numBuckets = 100;
 
 // manager tests
 import Manager from '../lib/manager.js';
+import should from 'should';
 
 describe('Manager', function() {
     describe('#getUserBucket()', function() {

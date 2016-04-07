@@ -36,10 +36,8 @@ describe('GET /v1 with lang = eng and uuid = foo', function() {
       .get(v1Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
-        if (res.body['onboarding-a'].isActive !== true &&
-          res.body['onboarding-b'].isActive !== true) {
-          throw new Error('one of onboarding-a or onboarding-b should be true');
-        }
+        res.body['onboarding-a'].isActive.
+        should.not.be.equal(res.body['onboarding-b']);
       })
       .expect(200, done);
   });
@@ -53,21 +51,17 @@ describe('GET /v2 with lang = eng and uuid = foo', function() {
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
-  it('if uuid is given, only one of onboarding-a or onboarding-b should be active', function(done) {
+  it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
       .get(v2Url + '/?lang=eng&uuid=foo')
       .set('Accept', 'application/json')
       .expect(function(res) {
-        if (res.body.results['onboarding-a'].isActive === true) {
-          res.body.results['onboarding-b'].isActive.should.not.be.True();
-        }
-        if (res.body.results['onboarding-b'].isActive === true) {
-          res.body.results['onboarding-a'].isActive.should.not.be.True();
-        }
+        res.body.results['onboarding-a'].isActive.
+        should.not.be.equal(res.body.results['onboarding-b']);
       })
       .expect(200, done);
-  })
-})
+  });
+});
 
 describe('GETs to /v1', function() {
   it('should respond with JSON', function(done) {
@@ -76,7 +70,7 @@ describe('GETs to /v1', function() {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
-  })
+  });
   it('if uuid is given, one of onboarding-a or onboarding-b should be active', function(done) {
     request(app)
       .get(v2Url + '/?lang=eng&uuid=foo')
@@ -121,7 +115,7 @@ describe('GETs to /v1', function() {
       })
       .expect(200, done);
   });
-})
+});
 
 describe('GETs to /urls', function() {
   it('should respond with JSON', function(done) {
@@ -136,9 +130,9 @@ describe('GETs to /urls', function() {
       .get(urlsUrl)
       .set('Accept', 'application/json')
       .expect(function(res) {
-        res.body.mainServerUrl.should.be.a.String();
-        res.body.updateServerUrl.should.be.a.String();
+        res.body.mainServerUrl.should.be.a.String().and.equal(mainServerUrl + v1Url);
+        res.body.updateServerUrl.should.be.a.String().and.equal(mainServerUrl + urlsUrl);
       })
       .expect(200, done);
-  })
-})
+  });
+});
