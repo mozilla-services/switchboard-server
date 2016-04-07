@@ -85,6 +85,24 @@ describe('GETs to /v1', function() {
       })
       .expect(200, done);
   })
+  it('should pass on values object if the experiment is satisfied', function(done) {
+    request(app)
+      .get(v1Url + '/?uuid=foo')
+      .set('Accept', 'application/json')
+      .expect(function(res) {
+        res.body['onboarding-b'].values.should.not.be.Null();
+      })
+      .expect(200, done);
+  });
+  it('values should be null if the experiment is not satisfied', function(done) {
+    request(app)
+      .get(v1Url + '/?uuid=foo')
+      .set('Accept', 'application/json')
+      .expect(function(res) {
+        should.equal(res.body['onboarding-a'].values, null);
+      })
+      .expect(200, done);
+  });
   it('should require exact string matches for appId no regex syntax is used', function(done) {
     request(app)
       .get(v1Url + '/?uuid=test&appId=org.mozilla.fennec_aurora')
