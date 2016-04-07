@@ -11,6 +11,9 @@
     "buckets": {
       "min": "50",
       "max": "100"
+    },
+    "values": {
+      "isB": "true"
     }
   },
   "fennec_aurora": {

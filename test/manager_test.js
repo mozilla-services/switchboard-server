@@ -29,26 +29,11 @@ describe('Manager', function() {
             manager.uuid = 50;
             let bucket = manager.getUserBucket(this.uuid);
             manager.isInBucket(bucket, bucket + 1).should.be.true();
-        })
+        });
         it('should return false if low == high', function() {
             manager.uuid = 50;
             let bucket = manager.getUserBucket(this.uuid);
             manager.isInBucket(bucket, bucket).should.be.false();
-        })
-    })
-    describe('#isApplicationId()', function() {
-        let manager = new Manager({'lang': 'eng'}, numBuckets);
-        it('should return false if the manager\'s appId is undefined', function() {
-            manager.appId = undefined;
-            manager.isApplicationId(9).should.be.false();
-        })
-        it('should return true when values are exactly equal', function() {
-            manager.appId = 10;
-            manager.isApplicationId(10).should.be.true();
-        })
-        it('should return false when value are not exactly equal', function() {
-            manager.appId = 'hello';
-            manager.isApplicationId(9).should.be.false();
-        })
-    })
+        });
+    });
 });
