@@ -5,7 +5,7 @@ To install dev dependencies, such as for running tests:
 npm install --dev
 
 To run the server:
-npm start
+npm run start-dev
 
 Note: the above uses CONFIG_FILE=config/example_config.json by default.
 This can be changed in your package.json, or you can simply run ```CONFIG_FILE=/path/to/config.json node index.js``` yourself.
