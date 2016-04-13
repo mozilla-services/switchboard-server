@@ -30,7 +30,7 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./lib -s",
     "build": "npm run clean && npm run build-server",
-    "start-server": "node ./build/index.js"
+    "start-server": "node ./build/app.js"
   },
   "author": "Miles Crabill",
   "contributors": "Miles",
