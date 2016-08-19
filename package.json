@@ -22,7 +22,7 @@
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^7.0.0",
     "mocha": "^2.3.2",
-    "supertest": "^1.1.0"
+    "supertest": "^2.0.0"
   },
   "scripts": {
     "test": "CONFIG_FILE=test/test_config.json mocha --compilers js:babel-core/register test/*.js; exit 0",
